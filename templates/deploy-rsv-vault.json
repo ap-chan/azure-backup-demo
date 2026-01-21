@@ -47,14 +47,6 @@
             },
             "properties": {
                 "publicNetworkAccess": "Enabled",
-                "monitoringSettings": {
-                    "azureMonitorAlertSettings": {
-                        "alertsForAllJobFailures": "Enabled"
-                    },
-                    "classicAlertSettings": {
-                        "alertsForCriticalOperations": "Disabled"
-                    }
-                },
                 "securitySettings": {
                     "immutabilitySettings": {
                         "state": "Disabled"
