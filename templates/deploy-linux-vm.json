@@ -224,28 +224,12 @@
                 },
                 {
                     "type": "extensions",
-                    "name": "DependencyAgentLinux",
-                    "apiVersion": "[variables('vmApiVersion')]",
-                    "location": "[variables('location')]",
-                    "dependsOn": [
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/Microsoft.Azure.NetworkWatcher')]"
-                    ],
-                    "properties": {
-                        "publisher": "Microsoft.Azure.Monitoring.DependencyAgent",
-                        "type": "DependencyAgentLinux",
-                        "typeHandlerVersion": "9.10",
-                        "autoUpgradeMinorVersion": true
-                    }
-                },
-                {
-                    "type": "extensions",
                     "name": "AzureMonitorLinuxAgent",
                     "apiVersion": "[variables('vmApiVersion')]",
                     "location": "[variables('location')]",
                     "dependsOn": [
                         "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/DependencyAgentLinux')]"
+                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/Microsoft.Azure.NetworkWatcher')]"
                     ],
                     "properties": {
                         "publisher": "Microsoft.Azure.Monitor",
