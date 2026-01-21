@@ -76,10 +76,10 @@
             "type": "Microsoft.RecoveryServices/vaults/backupstorageconfig",
             "dependsOn": [
                 "[resourceId('Microsoft.RecoveryServices/vaults', variables('vaultName'))]",
+                "[resourceId('Microsoft.RecoveryServices/vaults/backupconfig',variables('vaultName'),'vaultconfig')]"
+            ],
             "apiVersion": "[variables('rcvSvcVltApiVersion')]",
             "properties": {
-                "storageModelType": "GeoRedundant",
-                "crossRegionRestoreFlag": true
             }
         },
         {
