@@ -224,7 +224,7 @@
                 },
                 {
                     "type": "extensions",
-                    "name": "OMSExtension",
+                    "name": "DependencyAgentLinux",
                     "apiVersion": "[variables('vmApiVersion')]",
                     "location": "[variables('location')]",
                     "dependsOn": [
@@ -232,32 +232,9 @@
                         "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/Microsoft.Azure.NetworkWatcher')]"
                     ],
                     "properties": {
-                        "publisher": "Microsoft.EnterpriseCloud.Monitoring",
-                        "type": "OmsAgentForLinux",
-                        "typeHandlerVersion": "1.13",
-                        "autoUpgradeMinorVersion": true,
-                        "settings": {
-                            "workspaceId": "[parameters('myWorkspaceId')]",
-                            "stopOnMultipleConnections": true
-                        },
-                        "protectedSettings": {
-                            "workspaceKey": "[parameters('myWorkspaceKey')]"
-                        }
-                    }
-                },
-                {
-                    "type": "extensions",
-                    "name": "DependencyAgentLinux",
-                    "apiVersion": "[variables('vmApiVersion')]",
-                    "location": "[variables('location')]",
-                    "dependsOn": [
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/OMSExtension')]"
-                    ],
-                    "properties": {
                         "publisher": "Microsoft.Azure.Monitoring.DependencyAgent",
                         "type": "DependencyAgentLinux",
-                        "typeHandlerVersion": "9.5",
+                        "typeHandlerVersion": "9.10",
                         "autoUpgradeMinorVersion": true
                     }
                 },
@@ -273,7 +250,7 @@
                     "properties": {
                         "publisher": "Microsoft.Azure.Monitor",
                         "type": "AzureMonitorLinuxAgent",
-                        "typeHandlerVersion": "1.5",
+                        "typeHandlerVersion": "1.25",
                         "autoUpgradeMinorVersion": true,
                         "enableAutomaticUpgrade": true
                     }
