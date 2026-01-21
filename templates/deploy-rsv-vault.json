@@ -47,6 +47,10 @@
             },
             "properties": {
                 "publicNetworkAccess": "Enabled",
+                "redundancySettings": {
+                    "standardTierStorageRedundancy": "GeoRedundant",
+                    "crossRegionRestore": "Enabled"
+                },
                 "securitySettings": {
                     "immutabilitySettings": {
                         "state": "Disabled"
@@ -72,8 +76,6 @@
             "type": "Microsoft.RecoveryServices/vaults/backupstorageconfig",
             "dependsOn": [
                 "[resourceId('Microsoft.RecoveryServices/vaults', variables('vaultName'))]",
-                "[resourceId('Microsoft.RecoveryServices/vaults/backupconfig',variables('vaultName'),'vaultconfig')]"
-            ],
             "apiVersion": "[variables('rcvSvcVltApiVersion')]",
             "properties": {
                 "storageModelType": "GeoRedundant",
