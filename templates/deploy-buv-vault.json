@@ -20,7 +20,7 @@
         }
     },
     "variables": {
-        "buVltApiVersion": "2022-05-01",
+        "buVltApiVersion": "2024-04-01",
         "location": "[resourceGroup().location]",
         "storageType": "GeoRedundant", 
         "vaultName": "[concat('buvlt',parameters('uniqueData'))]"
@@ -32,10 +32,6 @@
             "apiVersion": "[variables('buVltApiVersion')]",
             "location": "[variables('location')]",
             "tags": "[parameters('tags')]",
-            "sku": {
-                "name": "RS0",
-                "tier": "Standard"
-            },
             "identity": {
                 "type": "SystemAssigned"
             },
@@ -50,7 +46,12 @@
                         "datastoreType": "VaultStore",
                         "type": "[variables('storageType')]"
                     }
-                ]
+                ],
+                "securitySettings": {
+                    "immutabilitySettings": {
+                        "state": "Disabled"
+                    }
+                }
             }
         }
     ],
