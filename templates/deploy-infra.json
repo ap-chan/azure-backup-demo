@@ -75,11 +75,11 @@
     },
     "variables": {
 
-        "diagnosticApiVersion": "2017-05-01-preview",
-        "networkApiVersion": "2020-07-01",
-        "rcvSvcVltApiVersion": "2022-04-01",
-        "resourcesApiVersion": "2020-06-01",
-        "storageApiVersion": "2021-09-01",
+        "diagnosticApiVersion": "2021-05-01-preview",
+        "networkApiVersion": "2023-11-01",
+        "rcvSvcVltApiVersion": "2024-04-01",
+        "resourcesApiVersion": "2024-03-01",
+        "storageApiVersion": "2023-05-01",
         "availabilityZone": "1",
         "location": "[resourceGroup().location]",
         "bastionName": "[concat('bst', parameters('uniqueData'))]",
@@ -568,7 +568,6 @@
 
                             "type": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems",
                             "apiVersion": "[variables('rcvSvcVltApiVersion')]",
-                            "location": "[variables('location')]",
                             "properties": {
                                 "protectedItemType": "Microsoft.Compute/virtualMachines",
                                 "policyId": "[parameters('rsVaultBscBuPolicyResId')]",
@@ -579,7 +578,6 @@
                             "name": "[concat(parameters('rsVaultName'),'/Azure/IaasVMContainer;iaasvmcontainerv2;',resourceGroup().name,';',variables('vmWinPriServer1Name'),'/VM;iaasvmcontainerv2;',resourceGroup().name,';',variables('vmWinPriServer1Name'))]",
                             "type": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems",
                             "apiVersion": "[variables('rcvSvcVltApiVersion')]",
-                            "location": "[variables('location')]",
                             "dependsOn": [
                                 "[concat('Microsoft.RecoveryServices/vaults/',parameters('rsVaultName'),'/backupFabrics/Azure/protectionContainers/IaasVMContainer;iaasvmcontainerv2;',resourceGroup().name,';',variables('vmLinPriServer1Name'),'/protectedItems/','VM;iaasvmcontainerv2;',resourceGroup().name,';',variables('vmLinPriServer1Name'))]"
                             ],
