@@ -108,12 +108,12 @@
         "wlPriResourceGroupName": "[resourceGroup().name]",
         "wlPriVnetBastionSubnetCidr": "10.20.1.0/24",
         "wlPriVnetCidr": "10.20.0.0/16",
-        "wlPriVnetName": "[concat('vnet-wl-pri', parameters('uniqueData'))]",
+        "wlPriVnetName": "vnet-wl-pri",
         "wlPriVnetWlSubnetCidr": "10.20.2.0/24",
         "wlSecNsgName": "nsg-wl-sec",
         "wlSecPeerName": "peertopri",
         "wlSecVnetCidr": "10.21.0.0/16",
-        "wlSecVnetName": "[concat('vnet-wl-sec', parameters('uniqueData'))]",
+        "wlSecVnetName": "vnet-wl-sec",
         "wlSecVnetWlSubnetCidr": "10.21.2.0/24"
     },
     "resources": [
