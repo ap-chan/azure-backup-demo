@@ -20,7 +20,7 @@
         }
     },
     "variables": {
-        "laApiVersion": "2015-11-01-preview",
+        "laApiVersion": "2023-09-01",
         "laWorkspaceName": "[concat('la', parameters('uniqueData'))]",
         "location": "[resourceGroup().location]"
     },
@@ -53,11 +53,11 @@
             },
             "logAnalyticsWorkspaceId": {
                 "type": "string",
-                "value": "[reference(resourceId('Microsoft.OperationalInsights/workspaces',variables('laWorkspaceName')),'2015-03-20').customerId]"
+                "value": "[reference(resourceId('Microsoft.OperationalInsights/workspaces',variables('laWorkspaceName')),'2023-09-01').customerId]"
             },
             "logAnalyticsWorkspaceKey": {
                 "type": "string",
-                "value": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces', variables('laWorkspaceName')), '2015-03-20').primarySharedKey]"
+                "value": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces', variables('laWorkspaceName')), '2023-09-01').primarySharedKey]"
             }
     }
 }
