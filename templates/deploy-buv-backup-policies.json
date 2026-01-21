@@ -17,10 +17,10 @@
         }
     },
     "variables": {
-        "buVltApiVersion": "2022-05-01",
+        "buVltApiVersion": "2024-04-01",
         "backupDiskPolicyName": "[concat('cstDiskPolicy',parameters('uniqueData'))]",
         "backupBlobPolicyName": "[concat('cstBlobPolicy',parameters('uniqueData'))]",
-        "backupRunTime": "R/2022-08-09T04:00:00+00:00/PT1H",
+        "backupRunTime": "R/2026-01-20T04:00:00+00:00/PT1H",
         "retentionDailyDuration": "P7D",
         "retentionWeeklyDuration": "P12W",
         "retentionBlob": "P30D"
