@@ -198,27 +198,11 @@
             "resources": [
                 {
                     "type": "extensions",
-                    "name": "DependencyAgentWindows",
-                    "apiVersion": "[variables('vmApiVersion')]",
-                    "location": "[variables('location')]",
-                    "dependsOn": [
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
-                    ],
-                    "properties": {
-                        "publisher": "Microsoft.Azure.Monitoring.DependencyAgent",
-                        "type": "DependencyAgentWindows",
-                        "typeHandlerVersion": "9.10",
-                        "autoUpgradeMinorVersion": true
-                    }
-                },
-                {
-                    "type": "extensions",
                     "name": "AzureMonitorWindowsAgent",
                     "apiVersion": "[variables('vmApiVersion')]",
                     "location": "[variables('location')]",
                     "dependsOn": [
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/DependencyAgentWindows')]"
+                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
                     ],
                     "properties": {
                         "publisher": "Microsoft.Azure.Monitor",
