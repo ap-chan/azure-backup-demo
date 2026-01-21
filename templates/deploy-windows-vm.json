@@ -98,8 +98,8 @@
         }
     },
     "variables": {
-        "networkApiVersion": "2021-08-01",
-        "vmApiVersion": "2021-11-01",
+        "networkApiVersion": "2023-11-01",
+        "vmApiVersion": "2024-07-01",
         "modulesUrl": "[uri(parameters('linkedTemplateLocation'), concat('../dsc/windowsdevvm.zip'))]",
         "configurationFunction": "windowsdevvm.ps1\\WindowsDevVM",
         "location": "[resourceGroup().location]",
@@ -207,31 +207,8 @@
                     "properties": {
                         "publisher": "Microsoft.Azure.Monitoring.DependencyAgent",
                         "type": "DependencyAgentWindows",
-                        "typeHandlerVersion": "9.5",
+                        "typeHandlerVersion": "9.10",
                         "autoUpgradeMinorVersion": true
-                    }
-                },
-                {
-                    "type": "extensions",
-                    "name": "MMAExtension",
-                    "apiVersion": "[variables('vmApiVersion')]",
-                    "location": "[variables('location')]",
-                    "dependsOn": [
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/DependencyAgentWindows')]"
-                    ],
-                    "properties": {
-                        "publisher": "Microsoft.EnterpriseCloud.Monitoring",
-                        "type": "MicrosoftMonitoringAgent",
-                        "typeHandlerVersion": "1.0",
-                        "autoUpgradeMinorVersion": true,
-                        "settings": {
-                            "workspaceId": "[parameters('myWorkspaceId')]",
-                            "stopOnMultipleConnections": true
-                        },
-                        "protectedSettings": {
-                            "workspaceKey": "[parameters('myWorkspaceKey')]"
-                        }
                     }
                 },
                 {
@@ -241,12 +218,12 @@
                     "location": "[variables('location')]",
                     "dependsOn": [
                         "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/MMAExtension')]"
+                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), '/extensions/DependencyAgentWindows')]"
                     ],
                     "properties": {
                         "publisher": "Microsoft.Azure.Monitor",
                         "type": "AzureMonitorWindowsAgent",
-                        "typeHandlerVersion": "1.0",
+                        "typeHandlerVersion": "1.22",
                         "autoUpgradeMinorVersion": true,
                         "enableAutomaticUpgrade": true
                     }
