@@ -26,7 +26,7 @@
         }
     },
     "variables": {
-        "rcvSvcVltApiVersion": "2022-04-01",
+        "rcvSvcVltApiVersion": "2024-04-01",
         "location": "[resourceGroup().location]",
         "backupFilePolicyName": "[concat('cstFilePolicy',parameters('uniqueData'))]",
         "backupRunTime": "00:00:00",
@@ -38,8 +38,6 @@
             "name": "[concat(parameters('recSvcVaultName'), '/', variables('backupVmBscPolicyName'))]",
             "type": "Microsoft.RecoveryServices/vaults/backupPolicies",
             "apiVersion": "[variables('rcvSvcVltApiVersion')]",
-            "location": "[variables('location')]",
-            "tags": "[parameters('tags')]",
             "properties": {
                 "backupManagementType": "AzureIaasVM",
                 "instantRPDetails": {
@@ -125,11 +123,9 @@
             "name": "[concat(parameters('recSvcVaultName'), '/', variables('backupVmAdvPolicyName'))]",
             "type": "Microsoft.RecoveryServices/vaults/backupPolicies",
             "apiVersion": "[variables('rcvSvcVltApiVersion')]",
-            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.RecoveryServices/vaults/backupPolicies', parameters('recSvcVaultName'), variables('backupVmBscPolicyName'))]"
             ],
-            "tags": "[parameters('tags')]",
             "properties": {
                 "backupManagementType": "AzureIaasVM",
                 "instantRPDetails": {
@@ -217,11 +213,9 @@
             "name": "[concat(parameters('recSvcVaultName'), '/', variables('backupFilePolicyName'))]",
             "type": "Microsoft.RecoveryServices/vaults/backupPolicies",
             "apiVersion": "[variables('rcvSvcVltApiVersion')]",
-            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.RecoveryServices/vaults/backupPolicies', parameters('recSvcVaultName'), variables('backupVmAdvPolicyName'))]"
             ],
-            "tags": "[parameters('tags')]",
             "properties": {
                 "backupManagementType": "AzureStorage",
                 "schedulePolicy": {
