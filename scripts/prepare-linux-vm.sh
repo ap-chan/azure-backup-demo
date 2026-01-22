@@ -1,30 +1,48 @@
 #!/bin/bash
 
-# Add repositories
-curl -sL https://packages.microsoft.com/keys/microsoft.asc |
-    gpg --dearmor |
-    sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
-AZ_REPO=$(lsb_release -cs)
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" |
-    sudo tee /etc/apt/sources.list.d/azure-cli.list
+# Setup logging
+LOG_FILE="/tmp/prepare-linux-vm.log"
 
-# Install Azure CLI
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+log "Starting Linux VM configuration..."
+
+# Detect OS version
+. /etc/os-release
+log "Detected OS: $NAME $VERSION"
+
+# Install prerequisites
+log "Installing prerequisites..."
 sudo apt-get update
-sudo apt-get -y install ca-certificates curl apt-transport-https lsb-release gnupg
-sudo apt-get -y install azure-cli
+sudo apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg
+
+# Install Azure CLI using the recommended method for Ubuntu 24.04
+log "Installing Azure CLI..."
+# Option 1: One-line install (recommended by Microsoft)
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+log "Azure CLI installation completed."
 
 # Create test files and folders
-sudo mkdir /var/sample-files
-cat <<EOF > samplefile1.txt
+log "Creating test files..."
+sudo mkdir -p /var/sample-files
+
+sudo bash -c 'cat <<EOF > /var/sample-files/samplefile1.txt
 This is sample file 1
-EOF
+EOF'
 
-cat <<EOF > samplefile2.txt
+sudo bash -c 'cat <<EOF > /var/sample-files/samplefile2.txt
 This is sample file 2
-EOF
+EOF'
 
-cat <<EOF > samplefile3.txt
+sudo bash -c 'cat <<EOF > /var/sample-files/samplefile3.txt
 This is sample file 3
-EOF
+EOF'
 
 sudo chmod -R 644 /var/sample-files
+sudo chmod 755 /var/sample-files
+
+log "Test files created successfully."
+log "Script completed."
